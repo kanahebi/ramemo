@@ -1,0 +1,20 @@
+<% @ramen.each do |ramen| %>
+  <li class="content">
+    <h2 class="ramen-name"><%= ramen.name %></h2>
+    <div class="ramen-shop"><%= shop_tag ramen %></div>
+    <div><%= image_tag ramen.picture %></div>
+    <% ramen.tastes.each do |taste| %>
+      <div><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: "taste"} %></div>
+    <% end %>
+    <div class="profile">
+      <%= image_tag "NCM_0561.JPG", {size: "40x40", class: "profile-img"} %>
+      <div class="profile-name">
+        <div>
+          <%= link_to ramen.user.name, users_path(ramen.user.code), {class: "user-name"} %>
+          <%= "さんがラーメンを食べました。" %>
+        </div>
+        <div><%= "1時間前" %></div>
+      </div>
+    </div>
+  </li>
+<% end %>

@@ -1,0 +1,103 @@
+<%= form_for(@ramen) do |f| %>
+  <% if @ramen.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@ramen.errors.count, "error") %> prohibited this ramen from being saved:</h2>
+
+      <ul>
+      <% @ramen.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <table>
+    <tr>
+      <div class="field">
+        <th><%= "ラーメンの名前" %></th>
+        <td><%= f.text_field :name %></td>
+      </div>
+    </tr>
+
+    <tr>
+      <div class="field">
+        <th><%= "ラーメンの写真" %></th>
+        <td>
+          <div class="uploader">
+            <div class="image">
+              <%= "選ぶ" %>
+              <%= f.file_field :picture, {class: "file-input"} %>
+            </div>
+          </div>
+        </td>
+      </div>
+    </tr>
+
+    <%= f.fields_for :ramen_shop do |s| %>
+    <tr>
+      <div class="field">
+        <th><%= "お店の名前" %></th>
+        <td><%= link_to "選ぶ", modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} %></td>
+        <td><span id="select_shop"></span></td>
+        <%= s.hidden_field :shop_id %>
+      </div>
+    </tr>
+    <% end %>
+
+    <%= f.fields_for :ramen_tastes do |t| %>
+    <tr>
+      <div class="field">
+        <th><%= "スープの味" %></th>
+        <td><%= link_to "選ぶ", modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} %></td>
+        <td><span id="select_tastes"></span></td>
+        <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
+      </div>
+    </tr>
+    <% end %>
+  </table>
+
+  <div class="actions">
+    <%= f.submit "食べた" %>
+  </div>
+<% end %>
+
+<div id="modal-content">
+  <div><a id="modal-close" class="button-link" onclick="hide_modal();">×</a></div>
+  <div id="modal-body"></div>
+  <div class="decide"><%= "決定" %></div>
+</div>
+
+<script type="text/javascript">
+  $(".modal-open").click(function(){
+    $(this).blur();
+    if($("#modal-overlay")[0]) $("#modal-overlay").remove();
+    centeringModalSyncer();
+  });
+
+  function hide_modal(){
+    $("#modal-content, #modal-overlay").fadeOut("slow",function(){
+      $("#modal-overlay").remove();
+      $("#modal-body").replaceWith('<div id="modal-body"></div>');
+    });
+  };
+
+  function centeringModalSyncer(){
+    //画面(ウィンドウ)の幅を取得し、変数[w]に格納
+    var w = $(window).width();
+    //画面(ウィンドウ)の高さを取得し、変数[h]に格納
+    var h = $(window).height();
+    //コンテンツ(#modal-content)の幅を取得し、変数[cw]に格納
+    var cw = $("#modal-content").outerWidth({margin:true});
+    //コンテンツ(#modal-content)の高さを取得し、変数[ch]に格納
+    var ch = $("#modal-content").outerHeight({margin:true});
+    //コンテンツ(#modal-content)を真ん中に配置するのに、左端から何ピクセル離せばいいか？を計算して、変数[pxleft]に格納
+    var pxleft = ((w - cw)/2);
+    //コンテンツ(#modal-content)を真ん中に配置するのに、上部から何ピクセル離せばいいか？を計算して、変数[pxtop]に格納
+    var pxtop = ((h - ch)/2);
+    //[#modal-content]のCSSに[left]の値(pxleft)を設定
+    $("#modal-content").css({"left": pxleft + "px"});
+    //[#modal-content]のCSSに[top]の値(pxtop)を設定
+    $("#modal-content").css({"top": pxtop + "px"});
+    console.log(pxleft);
+  };
+</script>

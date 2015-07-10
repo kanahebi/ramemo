@@ -1,0 +1,38 @@
+<div id="modal-body">
+  <h3>味一覧</h3>
+  <div class="taste-toggle">＋追加</div>
+  <div id="taste-add" style="display: none">
+    <%= render 'tastes/modal_new', object: @taste %>
+  </div>
+
+  <% @tastes.each do |taste| %>
+    <div class="taste" id="<%= taste.id %>"><%= taste.name %></div>
+  <% end %>
+  <br><br>
+
+  <script type="text/javascript">
+    taste_ids = new Array();
+    taste_names = new Array();
+    $(".taste").click(function(){
+      index = $.inArray($(this).attr('id'), taste_ids);
+      if (index != -1){
+        taste_ids.splice(index, 1);
+        taste_names.splice(index, 1);
+      }else{
+        taste_ids.push($(this).attr('id'));
+        taste_names.push($(this).text());
+      }
+      taste_ids = jQuery.unique(taste_ids);
+      taste_names = jQuery.unique(taste_names);
+    });
+    $(".decide").click(function(){
+      $('#select_tastes').text(taste_names.join(','));
+      $('#ramen_ramen_tastes_attributes_0_taste_id').val(taste_ids[0]);
+      hide_modal();
+    });
+
+    $(".taste-toggle").click(function(){
+      $("#taste-add").toggle(300);
+    });
+  </script>
+</div>

@@ -1,0 +1,30 @@
+<div id="modal-body">
+  <h3>お店一覧</h3>
+  <div class="shop-toggle">＋追加</div>
+  <div id="shop-add" style="display: none">
+    <%= render 'shops/modal_new', object: @shop %>
+  </div>
+
+  <% @shops.each do |shop| %>
+    <div class="shop" id="<%= shop.id %>"><%= shop.name %></div>
+  <% end %>
+  <br><br>
+
+  <script type="text/javascript">
+    id = "";
+    name = "";
+    $(".shop").click(function(){
+      id = $(this).attr('id');
+      name = $(this).text();
+    });
+    $(".decide").click(function(){
+      $('#select_shop').text(name);
+      $('#ramen_ramen_shop_attributes_shop_id').val(id);
+      hide_modal();
+    });
+
+    $(".shop-toggle").click(function(){
+      $("#shop-add").toggle(300);
+    });
+  </script>
+</div>

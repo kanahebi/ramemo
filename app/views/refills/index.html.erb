@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Refills</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @refills.each do |refill| %>
+      <tr>
+        <td><%= refill.name %></td>
+        <td><%= link_to 'Show', refill %></td>
+        <td><%= link_to 'Edit', edit_refill_path(refill) %></td>
+        <td><%= link_to 'Destroy', refill, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Refill', new_refill_path %>

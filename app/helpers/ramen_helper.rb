@@ -1,0 +1,2 @@
+module RamenHelper
+end

@@ -1,0 +1,4 @@
+$("body").append('<div id="modal-overlay" onclick="hide_modal();"></div>');
+$("#modal-body").replaceWith("<%= escape_javascript(render 'tastes/modal', object: @tastes) %>");
+$("#modal-overlay").fadeIn("slow");
+$("#modal-content").fadeIn("slow");

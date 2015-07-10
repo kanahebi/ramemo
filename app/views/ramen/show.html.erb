@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @ramen.name %>
+</p>
+
+<p>
+  <strong>Picture:</strong>
+  <%= image_tag @ramen.picture, size: "40x40" %>
+</p>
+
+<%= link_to 'Edit', edit_ramen_path(@ramen) %> |
+<%= link_to 'Back', ramen_index_path %>

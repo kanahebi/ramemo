@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ramemo</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<% if user_signed_in? %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% else %>
+  <%= link_to "ログイン", new_user_session_path %>
+<% end %>
+
+<%= link_to 'ラーメン食べた', new_ramen_path %>
+<%= yield %>
+
+</body>
+</html>
