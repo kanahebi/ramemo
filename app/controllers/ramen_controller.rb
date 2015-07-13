@@ -73,6 +73,7 @@ if false
     ramen_associates.each{|associate| ramen_valid = ramen_valid && associate.valid?}
     p ramen_valid
 
+end
     respond_to do |format|
       if @ramen.save
         format.html { redirect_to @ramen, notice: 'Ramen was successfully created.' }
@@ -83,7 +84,6 @@ if false
       end
     end
   end
-end
 
   # PATCH/PUT /ramen/1
   # PATCH/PUT /ramen/1.json

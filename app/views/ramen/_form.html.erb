@@ -23,11 +23,9 @@
       <div class="field">
         <th><%= "ラーメンの写真" %></th>
         <td>
-          <div class="uploader">
-            <div class="image">
-              <%= "選ぶ" %>
-              <%= f.file_field :picture, {class: "file-input"} %>
-            </div>
+          <div class="select-link">
+            <%= "選ぶ" %>
+            <%= f.file_field :picture, {class: "file-input"} %>
           </div>
         </td>
       </div>
@@ -37,7 +35,11 @@
     <tr>
       <div class="field">
         <th><%= "お店の名前" %></th>
-        <td><%= link_to "選ぶ", modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} %></td>
+        <td>
+          <div class="select-link">
+            <%= link_to "選ぶ", modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} %>
+          </div>
+        </td>
         <td><span id="select_shop"></span></td>
         <%= s.hidden_field :shop_id %>
       </div>
@@ -48,7 +50,10 @@
     <tr>
       <div class="field">
         <th><%= "スープの味" %></th>
-        <td><%= link_to "選ぶ", modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} %></td>
+        <td>
+          <div class="select-link"><%= link_to "選ぶ", modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} %>
+          </div>
+        </td>
         <td><span id="select_tastes"></span></td>
         <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
       </div>

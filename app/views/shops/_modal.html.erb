@@ -14,12 +14,12 @@
     id = "";
     name = "";
     $(".shop").click(function(){
-      id = $(this).attr('id');
-      name = $(this).text();
+      $('.active').not(this).removeClass('active');
+      $(this).toggleClass('active');
     });
     $(".decide").click(function(){
-      $('#select_shop').text(name);
-      $('#ramen_ramen_shop_attributes_shop_id').val(id);
+        $('#select_shop').text($('.active').text());
+        $('#ramen_ramen_shop_attributes_shop_id').val($('.active').attr('id'));
       hide_modal();
     });
 

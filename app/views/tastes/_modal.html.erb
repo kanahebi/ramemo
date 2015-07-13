@@ -14,20 +14,25 @@
     taste_ids = new Array();
     taste_names = new Array();
     $(".taste").click(function(){
-      index = $.inArray($(this).attr('id'), taste_ids);
-      if (index != -1){
-        taste_ids.splice(index, 1);
-        taste_names.splice(index, 1);
-      }else{
-        taste_ids.push($(this).attr('id'));
-        taste_names.push($(this).text());
-      }
-      taste_ids = jQuery.unique(taste_ids);
-      taste_names = jQuery.unique(taste_names);
+//      index = $.inArray($(this).attr('id'), taste_ids);
+//      if (index != -1){
+//        taste_ids.splice(index, 1);
+//        taste_names.splice(index, 1);
+//      }else{
+//        taste_ids.push($(this).attr('id'));
+//        taste_names.push($(this).text());
+//      }
+//      taste_ids = jQuery.unique(taste_ids);
+//      taste_names = jQuery.unique(taste_names);
+      $(this).toggleClass('active');
     });
     $(".decide").click(function(){
-      $('#select_tastes').text(taste_names.join(','));
-      $('#ramen_ramen_tastes_attributes_0_taste_id').val(taste_ids[0]);
+//      $('#select_tastes').text(taste_names.join(','));
+//      $('#ramen_ramen_tastes_attributes_0_taste_id').val(taste_ids[0]);
+      $('.active').each(function(index, element){
+        console.log($(element).text());
+        console.log($(element).attr('id'));
+      });
       hide_modal();
     });
 
