@@ -1,5 +1,6 @@
 class RamenController < ApplicationController
   before_action :set_ramen, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new]
 
   # GET /ramen
   # GET /ramen.json
@@ -9,25 +10,25 @@ class RamenController < ApplicationController
 
   def tastes
     taste = Taste.find_by(id: params[:taste_id])
-    @ramen = taste.ramen
+    @ramen = taste.ramen.reverse_order
     render :index
   end
 
   def shops
     shop = Shop.find_by(id: params[:shop_id])
-    @ramen = shop.ramen
+    @ramen = shop.ramen.reverse_order
     render :index
   end
 
   def chain_shops
     chain_shop = ChainShop.find_by(id: params[:chain_shop_id])
-    @ramen = chain_shop.ramen
+    @ramen = chain_shop.ramen.reverse_order
     render :index
   end
 
   def users
     user = User.find_by(code: params[:user_code])
-    @ramen = user.ramen
+    @ramen = user.ramen.reverse_order
     render :index
   end
 
@@ -52,28 +53,10 @@ class RamenController < ApplicationController
   def create
     @ramen = Ramen.new(ramen_params)
     @ramen.user_code = current_user.code
-    ramen_associates = Array.new
 
     p ramen_params
     p @ramen.ramen_tastes
 
-if false
-    if params[:shop][:id].present?
-      ramen_associates << @ramen.build_ramen_shop(shop_id: params[:shop][:id])
-    end
-
-    params[:tastes][:ids].split(',').each do |id|
-      ramen_associates << @ramen.ramen_tastes.build(taste_id: id)
-    end
-    p ramen_associates
-
-    p @ramen.inspect
-
-    ramen_valid = @ramen.valid?
-    ramen_associates.each{|associate| ramen_valid = ramen_valid && associate.valid?}
-    p ramen_valid
-
-end
     respond_to do |format|
       if @ramen.save
         format.html { redirect_to @ramen, notice: 'Ramen was successfully created.' }

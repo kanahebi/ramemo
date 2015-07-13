@@ -9,6 +9,7 @@
     <div class="shop" id="<%= shop.id %>"><%= shop.name %></div>
   <% end %>
   <br><br>
+  <div class="decide decide-shop"><%= "決定" %></div>
 
   <script type="text/javascript">
     id = "";
@@ -17,7 +18,7 @@
       $('.active').not(this).removeClass('active');
       $(this).toggleClass('active');
     });
-    $(".decide").click(function(){
+    $(".decide-shop").click(function(){
         $('#select_shop').text($('.active').text());
         $('#ramen_ramen_shop_attributes_shop_id').val($('.active').attr('id'));
       hide_modal();

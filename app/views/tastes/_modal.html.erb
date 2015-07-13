@@ -9,6 +9,7 @@
     <div class="taste" id="<%= taste.id %>"><%= taste.name %></div>
   <% end %>
   <br><br>
+  <div class="decide decide-taste"><%= "決定" %></div>
 
   <script type="text/javascript">
     taste_ids = new Array();
@@ -26,12 +27,23 @@
 //      taste_names = jQuery.unique(taste_names);
       $(this).toggleClass('active');
     });
-    $(".decide").click(function(){
+    $(".decide-taste").click(function(){
+      $("#tastes-fields").empty();
+      $("#select_tastes").empty();
 //      $('#select_tastes').text(taste_names.join(','));
 //      $('#ramen_ramen_tastes_attributes_0_taste_id').val(taste_ids[0]);
       $('.active').each(function(index, element){
+//        if (index == 0){
+//          $('#select_tastes').text($(element).text());
+//          $('#ramen_ramen_tastes_attributes_0_taste_id').val($(element).attr('id'));
+//        }else{
+          $('#tastes-fields').append("<input type='hidden' name='ramen[ramen_tastes_attributes]["+index+"][taste_id]' id='ramen_ramen_tastes_attributes_"+index+"_taste_id'>");
+          $('#ramen_ramen_tastes_attributes_'+index+'_taste_id').val($(element).attr('id'));
+          $("#select_tastes").append("<span>"+$(element).text()+"</span>");
+//        }
         console.log($(element).text());
         console.log($(element).attr('id'));
+        console.log($('.active').text());
       });
       hide_modal();
     });

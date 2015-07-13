@@ -15,7 +15,7 @@
     <tr>
       <div class="field">
         <th><%= "ラーメンの名前" %></th>
-        <td><%= f.text_field :name %></td>
+        <td colspan="2"><%= f.text_field :name %></td>
       </div>
     </tr>
 
@@ -27,6 +27,9 @@
             <%= "選ぶ" %>
             <%= f.file_field :picture, {class: "file-input"} %>
           </div>
+        </td>
+        <td>
+          <div class="file-name"></div>
         </td>
       </div>
     </tr>
@@ -69,7 +72,6 @@
 <div id="modal-content">
   <div><a id="modal-close" class="button-link" onclick="hide_modal();">×</a></div>
   <div id="modal-body"></div>
-  <div class="decide"><%= "決定" %></div>
 </div>
 
 <script type="text/javascript">
@@ -105,4 +107,14 @@
     $("#modal-content").css({"top": pxtop + "px"});
     console.log(pxleft);
   };
+
+  $(function() {
+    $('.file-input').on("change", function() {
+        var file = this.files[0];
+        if(file != null) {
+          console.log(file.name);
+          $(".file-name").text(file.name);
+        }
+    });
+  });
 </script>
