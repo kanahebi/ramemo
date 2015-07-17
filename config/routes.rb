@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  root 'portal#index'
+  get 'portal/index'
+
   devise_for :users
   resources :shops do
     collection do
@@ -26,8 +30,11 @@ Rails.application.routes.draw do
     end
   end
 
-  get ':user_code' => 'ramen#users', as: :users
+#  get ':user_code' => 'ramen#users', as: :users
 
+  get ':user_code' => 'users#ramen', as: :users_ramen
+  get ':user_code/following' => 'users#following', as: :users_following
+  get ':user_code/followers' => 'users#followers', as: :users_followers
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

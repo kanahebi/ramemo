@@ -5,30 +5,24 @@ class RamenController < ApplicationController
   # GET /ramen
   # GET /ramen.json
   def index
-    @ramen = Ramen.all.reverse_order
+    @ramen = Ramen.all
   end
 
   def tastes
     taste = Taste.find_by(id: params[:taste_id])
-    @ramen = taste.ramen.reverse_order
+    @ramen = taste.ramen
     render :index
   end
 
   def shops
     shop = Shop.find_by(id: params[:shop_id])
-    @ramen = shop.ramen.reverse_order
+    @ramen = shop.ramen
     render :index
   end
 
   def chain_shops
     chain_shop = ChainShop.find_by(id: params[:chain_shop_id])
-    @ramen = chain_shop.ramen.reverse_order
-    render :index
-  end
-
-  def users
-    user = User.find_by(code: params[:user_code])
-    @ramen = user.ramen.reverse_order
+    @ramen = chain_shop.ramen
     render :index
   end
 
