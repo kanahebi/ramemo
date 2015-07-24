@@ -13,7 +13,7 @@ class Ramen < ActiveRecord::Base
   accepts_nested_attributes_for :ramen_tastes, reject_if: :all_blank
 
   validates :name, presence: true
-  validates :user_code, presence: true
+  validates :user_id, presence: true
 
   default_scope -> { order('created_at DESC') }
   def self.from_users_followed_by(user)

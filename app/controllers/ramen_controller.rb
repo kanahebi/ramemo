@@ -46,7 +46,7 @@ class RamenController < ApplicationController
   # POST /ramen.json
   def create
     @ramen = Ramen.new(ramen_params)
-    @ramen.user_code = current_user.code
+    @ramen.user_id = current_user.id
 
     p ramen_params
     p @ramen.ramen_tastes
