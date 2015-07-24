@@ -17,10 +17,10 @@ module ApplicationHelper
   end
 
   def shop_to(shop)
-    link_to shop.name, shops_ramen_index_path(shop.id)
+    link_to shop.name, shops_ramen_index_path(shop.id), {class: ["ramen-shop", "marker"]}
   end
 
   def chain_shop_to(chain_shop)
-    link_to chain_shop.name, chain_shops_ramen_index_path(chain_shop.id)
+    link_to chain_shop.name, chain_shops_ramen_index_path(chain_shop.id), {class: ["ramen-chain_shop", "marker"]}
   end
 end

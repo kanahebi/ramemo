@@ -14,7 +14,7 @@
  *= require_self
  */
 img {
-    max-width: 100%;
+    max-width: 99.8%;
     height: auto;
 }
 
@@ -52,10 +52,8 @@ h2, h3 {
 .content {
   max-width: 350px;
   max-height: 100%;
-  border-width: 1px;
-  border-style: solid;
-  border-color: gray;
-  border-radius: 5px;
+  border: solid 2.5px #333;
+  border-radius: 200px 3px 230px 3px / 3px 225px 5px 255px;
   margin-bottom: 10px;
   vertical-align: top;
   display: inline-block;
@@ -67,10 +65,15 @@ h2, h3 {
   margin-top: 6px;
 }
 
-.ramen-shop {
+.ramen-store {
   margin: 4px;
+  margin-bottom: 8px;
   padding-left: 6px;
   color: #555;
+}
+
+.ramen-img {
+  text-align: center;
 }
 
 .taste {
@@ -199,4 +202,27 @@ ul {
   height:25px;
   opacity:0;
   position:absolute;
+}
+
+.marker {
+  line-height:1;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-bottom: 0px;
+  text-decoration:none;
+  border-bottom:solid 5px;
+  border-radius: 5px 12px 12px 5px/3px 5px 2px 3px;
+}
+.ramen-taste {
+  display: inline-block;
+  margin-left: 5px;
+  margin-bottom: 5px;
+  cursor:pointer;
+  border-color: #fa0;
+}
+.ramen-shop {
+  border-color: #00F;
+}
+.ramen-chain_shop {
+  border-color: #88F;
 }

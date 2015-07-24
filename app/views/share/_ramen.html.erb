@@ -1,10 +1,10 @@
 <% @ramen.each do |ramen| %>
   <li class="content">
     <h2 class="ramen-name"><%= ramen.name %></h2>
-    <div class="ramen-shop"><%= shop_tag ramen %></div>
-    <div><%= image_tag ramen.picture %></div>
+    <div class="ramen-store"><%= shop_tag ramen %></div>
+    <div class="ramen-img"><%= image_tag ramen.picture %></div>
     <% ramen.tastes.each do |taste| %>
-      <span><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: "taste"} %></span>
+      <span><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: ["ramen-taste", "marker"]} %></span>
     <% end %>
     <div class="profile">
       <%= image_tag "NCM_0561.JPG", {size: "40x40", class: "profile-img"} %>
