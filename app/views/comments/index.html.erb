@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<div class="comments-main">
+  <div class="ramen"><%= render partial: 'share/ramen', locals: {ramen: @ramen} %></div>
+
+  <% @comments.each do |comment| %>
+    <div class="comments">
+      <div class="comments-body"><%= comment.body %></div>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Comment', new_ramen_comment_path %>

@@ -1,6 +1,14 @@
 <p id="notice"><%= notice %></p>
 <div class="main">
+<% if false %>
   <ul style="list-style:none;">
-    <%= render 'share/ramen', object: @ramen %>
+    <% @ramen.each do |ramen| %>
+      <li class="li-content"><%= render partial: 'share/ramen', locals: {ramen: ramen} %></li>
+    <% end %>
   </ul>
+<% else %>
+  <% @ramen.each do |ramen| %>
+    <%= render partial: 'share/ramen', locals: {ramen: ramen} %>
+  <% end %>
+<% end %>
 </div>

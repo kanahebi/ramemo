@@ -23,9 +23,11 @@
       <div class="field">
         <th><%= "ラーメンの写真" %></th>
         <td>
+          <%= image_tag @ramen.picture if @ramen.picture? %>
           <div class="select-link">
             <%= "選ぶ" %>
             <%= f.file_field :picture, {class: "file-input"} %>
+            <%= f.hidden_field :picture if @ramen.picture_cache %>
           </div>
         </td>
         <td>
@@ -55,6 +57,9 @@
         <th><%= "スープの味" %></th>
         <td>
           <div class="select-link"><%= link_to "選ぶ", modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} %>
+          </div>
+          <div>
+            <img src="">
           </div>
         </td>
         <td><span id="select_tastes"></span></td>
@@ -114,11 +119,17 @@
 
   $(function() {
     $('.file-input').on("change", function() {
-        var file = this.files[0];
-        if(file != null) {
-          console.log(file.name);
-          $(".file-name").text(file.name);
-        }
+      console.log(window.FileReader);
+      var file = this.files[0];
+      if(file != null) {
+        console.log(file);
+        $(".file-name").text(file.name);
+      }
+      fr = new FileReader();
+      fr.onload = function() {
+        return $(input).siblings("div").find("img").attr('src', fr.result);
+      };
+      return fr.readAsDataURL(file);
     });
   });
 </script>
