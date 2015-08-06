@@ -5,8 +5,8 @@
   <% ramen.tastes.each do |taste| %>
     <span><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: ["ramen-taste", "marker"]} %></span>
   <% end %>
-  <%= link_to ramen_comments_path(ramen), {class: "line-none"} do %>
-    <div class="ramen-comments"><%= "コメント(#{ramen.comments.length})" %></div>
+  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
+    <div><%= "コメント(#{ramen.comments.length})" %></div>
   <% end %>
   <div class="profile">
     <%= image_tag "NCM_0561.JPG", {size: "40x40", class: "profile-img"} %>
