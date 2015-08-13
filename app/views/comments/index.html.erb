@@ -5,7 +5,19 @@
 
   <% @comments.each do |comment| %>
     <div class="comments">
-      <div class="comments-body"><%= comment.body %></div>
+      <div class="comments-border">
+        <div class="comments-profile">
+          <%= image_tag "NCM_0561.JPG", {size: "30x30", class: "profile-img"} %>
+          <div class="comments-profile-name">
+            <div>
+              <%= link_to comment.user.name || comment.user.code, users_ramen_path(comment.user.code), {class: "user-name"} %>
+              <%= "@#{comment.user.code}" %>
+            </div>
+            <div><%= "1時間前" %></div>
+          </div>
+        </div>
+        <div class="comments-body"><%= comment.body %></div>
+      </div>
     </div>
   <% end %>
 </div>

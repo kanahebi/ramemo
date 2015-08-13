@@ -11,63 +11,52 @@
     </div>
   <% end %>
 
-  <table>
-    <tr>
-      <div class="field">
-        <th><%= "ラーメンの名前" %></th>
-        <td colspan="2"><%= f.text_field :name %></td>
-      </div>
-    </tr>
+  <div class="content">
+        <div class="field">
+          <%= "ラーメンの名前" %>
+          <%= f.text_field :name %>
+        </div>
 
-    <tr>
-      <div class="field">
-        <th><%= "ラーメンの写真" %></th>
-        <td>
+      <%= f.fields_for :ramen_shop do |s| %>
+        <div class="field">
+          <%= "お店の名前" %>
+          <%= link_to modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
+            <div class="select-link">
+              <%= "選ぶ" %>
+            </div>
+          <% end %>
+          <span id="select_shop"></span>
+          <%= s.hidden_field :shop_id %>
+        </div>
+      <% end %>
+
+        <div class="field">
+          <%= "ラーメンの写真" %>
           <%= image_tag @ramen.picture if @ramen.picture? %>
-          <div class="select-link">
-            <%= "選ぶ" %>
-            <%= f.file_field :picture, {class: "file-input"} %>
-            <%= f.hidden_field :picture if @ramen.picture_cache %>
-          </div>
-        </td>
-        <td>
-          <div class="file-name"></div>
-        </td>
-      </div>
-    </tr>
+            <div class="select-link">
+              <%= "選ぶ" %>
+              <%= f.file_field :picture, {class: "file-input"} %>
+              <%= f.hidden_field :picture if @ramen.picture_cache %>
+            </div>
+            <div class="ramen-img">
+              <%= image_tag "ramen.png" %>
+            </div>
+            <div class="file-name"></div>
+        </div>
 
-    <%= f.fields_for :ramen_shop do |s| %>
-    <tr>
-      <div class="field">
-        <th><%= "お店の名前" %></th>
-        <td>
-          <div class="select-link">
-            <%= link_to "選ぶ", modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} %>
-          </div>
-        </td>
-        <td><span id="select_shop"></span></td>
-        <%= s.hidden_field :shop_id %>
-      </div>
-    </tr>
-    <% end %>
-
-    <%= f.fields_for :ramen_tastes do |t| %>
-    <tr>
-      <div class="field">
-        <th><%= "スープの味" %></th>
-        <td>
-          <div class="select-link"><%= link_to "選ぶ", modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} %>
-          </div>
-          <div>
-            <img src="">
-          </div>
-        </td>
-        <td><span id="select_tastes"></span></td>
-        <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
-      </div>
-    </tr>
-    <% end %>
-  </table>
+      <%= f.fields_for :ramen_tastes do |t| %>
+        <div class="field">
+          <%= "スープの味" %>
+          <%= link_to modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
+            <div class="select-link">
+              <%= "選ぶ" %>
+            </div>
+          <% end %>
+          <span id="select_tastes"></span>
+          <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
+        </div>
+      <% end %>
+  </div>
 
   <div class="actions">
     <%= f.submit "食べた" %>
@@ -113,8 +102,6 @@
     //[#modal-content]のCSSに[top]の値(pxtop)を設定
     //$("#modal-content").css({"top": pxtop + "px"});
     $("#modal-content").css({"top": "100px"});
-    console.log(h);
-    console.log(ch);
   };
 
   $(function() {
