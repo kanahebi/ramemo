@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :ramen, class_name: "Ramen", dependent: :destroy#, foreign_key: :user_code, primary_key: :code
+  has_many :likes, dependent: :destroy
 
   has_many :follower_relation, foreign_key: "follower_id", class_name: "Follow", dependent: :destroy
   has_many :followed_users, through: :follower_relation, source: :followed
@@ -22,8 +23,10 @@ class User < ActiveRecord::Base
       # auth.uidには twitterアカウントに基づいた個別のIDが入っている
       # first_or_createメソッドが自動でproviderとuidを設定してくれるので、
       # ここでは設定は必要ない
-      user.name = auth.info.nickname # twitterで利用している名前が入る
+      user.code = auth.info.nickname # twitterで利用している名前が入る
+      user.name = auth.info.name # twitterで利用している名前が入る
       user.email = auth.info.email # twitterの場合入らない
+      Rails.logger.info auth.info.inspect
     end
   end
 

@@ -9,6 +9,7 @@ class Ramen < ActiveRecord::Base
   has_one :chain_shop, through: :ramen_shop
 
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   has_many :ramen_tastes, dependent: :destroy
   has_many :tastes, through: :ramen_tastes

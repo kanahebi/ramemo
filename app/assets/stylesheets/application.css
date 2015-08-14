@@ -245,6 +245,20 @@ a.ramen-comments {
   border-left:solid #f814fd 14px;
 }
 
+a.ramen-likes {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  position: relative;
+  margin-left: auto;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  width: 85px;
+  display: block;
+  background-color: #8ac7fe;
+  border-left:solid #2717fb 14px;
+}
+
 .comments-border {
   border-left: solid 54px #f9dfe7;
 }
@@ -289,6 +303,8 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+.aaa {
   background-color:transparent;
   color: #74F;
 }

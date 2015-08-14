@@ -8,15 +8,19 @@
   <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
     <div><%= "コメント(#{ramen.comments.length})" %></div>
   <% end %>
+  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
+    <div><%= "食べたい(#{ramen.likes.length})" %></div>
+  <% end %>
   <div class="profile">
-    <%= image_tag "NCM_0561.JPG", {size: "40x40", class: "profile-img"} %>
+    <%= link_to image_tag("NCM_0561.JPG", {size: "40x40", class: "profile-img"}), users_ramen_path(ramen.user.code) %>
     <div class="profile-name">
-      <div>
-        <%= link_to ramen.user.name, users_ramen_path(ramen.user.code), {class: "user-name"} %>
-        <%= "@#{ramen.user.code}" %>
-      </div>
-      <div><%= "1時間前" %></div>
+      <%= link_to users_ramen_path(ramen.user.code) do %>
+        <div>
+          <%= content_tag :span, ramen.user.name || ramen.user.code, {class: "user-name"} %>
+          <%= "@#{ramen.user.code}" %>
+        </div>
+      <% end %>
+      <div><%= link_to "1時間前", ramen_path(ramen.id) %></div>
     </div>
   </div>
 </div>
-

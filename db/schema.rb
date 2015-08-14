@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150727045922) do
+ActiveRecord::Schema.define(version: 20150814051447) do
 
   create_table "chain_shops", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -38,6 +38,13 @@ ActiveRecord::Schema.define(version: 20150727045922) do
   add_index "follows", ["followed_id"], name: "index_follows_on_followed_id", using: :btree
   add_index "follows", ["follower_id", "followed_id"], name: "index_follows_on_follower_id_and_followed_id", unique: true, using: :btree
   add_index "follows", ["follower_id"], name: "index_follows_on_follower_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "ramen_id",   limit: 4, null: false
+    t.integer  "user_id",    limit: 4, null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "ramen", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false

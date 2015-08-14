@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :ramen, shallow:true do
     resources :comments
+    resources :likes
     collection do
       get ':taste_id/tastes' => 'ramen#tastes', as: :tastes
       get ':shop_id/shops' => 'ramen#shops', as: :shops
