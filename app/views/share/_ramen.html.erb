@@ -1,16 +1,17 @@
 <div class="content">
-  <h2 class="ramen-name"><%= ramen.name %></h2>
-  <div class="ramen-store"><%= shop_tag ramen %></div>
+  <div class="rule-30"><h2 class="ramen-name"><%= ramen.name %></h2></div>
+  <div class="rule"><div class="ramen-shop"><%= shop_tag ramen %></div></div>
   <div class="ramen-img"><%= image_tag ramen.picture %></div>
-  <% ramen.tastes.each do |taste| %>
-    <span><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: ["ramen-taste", "marker"]} %></span>
-  <% end %>
-  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
-    <div><%= "コメント(#{ramen.comments.length})" %></div>
-  <% end %>
-  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
-    <div><%= "食べたい(#{ramen.likes.length})" %></div>
-  <% end %>
+  <div class="rule">
+    <% ramen.tastes.each do |taste| %>
+      <div class="ramen-taste"><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: ["ramen-taste-border", "marker"]} %></div>
+    <% end %>
+  </div>
+  <div class="ramen-body">
+    <div class="rule ramen-body-memo"><%= "メモ" if ramen.body.present? %></div>
+    <div class="rule ramen-body-text"><%= ramen.body %></div>
+  </div>
+
   <div class="profile">
     <%= link_to image_tag("NCM_0561.JPG", {size: "40x40", class: "profile-img"}), users_ramen_path(ramen.user.code) %>
     <div class="profile-name">
@@ -23,4 +24,10 @@
       <div><%= link_to "1時間前", ramen_path(ramen.id) %></div>
     </div>
   </div>
+  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
+    <div><%= "コメント(#{ramen.comments.length})" %></div>
+  <% end %>
+  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
+    <div><%= "食べたい(#{ramen.likes.length})" %></div>
+  <% end %>
 </div>

@@ -21,7 +21,6 @@ img {
 body {
   margin: 10px;
   padding: 0;
-  font-family: monospace;
 }
 
 h2, h3 {
@@ -54,27 +53,22 @@ h2, h3 {
 .content {
   max-width: 350px;
   max-height: 100%;
-  border-color: transparent;
   border-image: url("memo.png") stretch stretch;
-  border-image-slice: 34 4 8 4;
+  border-image-slice: 34 4 4 4;
   border-style:solid;
-  border-width:4px;
-  border-top-width: 34px;
-  border-bottom-width: 8px;
+  border-width:34px 4px 4px 4px;
   margin-bottom: 10px;
   vertical-align: top;
   display: inline-block;
 }
 
 .ramen-name {
-  margin: 4px;
   padding: 4px;
   margin-top: 6px;
 }
 
-.ramen-store {
-  margin: 4px;
-  margin-bottom: 8px;
+.ramen-shop {
+  margin-top: 4px;
   padding-left: 6px;
   color: #555;
 }
@@ -219,15 +213,18 @@ ul {
 }
 .ramen-taste {
   display: inline-block;
-  margin-left: 5px;
-  margin-bottom: 5px;
   cursor:pointer;
+  padding-left: 6px;
+}
+
+.ramen-taste-border{
   border-color: #fa0;
 }
-.ramen-shop {
+
+.ramen-shop-border {
   border-color: #00F;
 }
-.ramen-chain_shop {
+.ramen-chain_shop-border {
   border-color: #88F;
 }
 
@@ -240,7 +237,7 @@ a.ramen-comments {
   color: white;
   font-weight: 600;
   width: 85px;
-  display: block;
+  display: inline-block;
   background-color: #fb8afe;
   border-left:solid #f814fd 14px;
 }
@@ -254,7 +251,7 @@ a.ramen-likes {
   color: white;
   font-weight: 600;
   width: 85px;
-  display: block;
+  display: inline-block;
   background-color: #8ac7fe;
   border-left:solid #2717fb 14px;
 }
@@ -307,4 +304,25 @@ a:hover {
 .aaa {
   background-color:transparent;
   color: #74F;
+}
+
+.rule {
+  background: url("rule.png") repeat bottom left;
+  margin: 5px;
+  line-height: 20px;
+}
+.rule-30 {
+  background: url("rule_30.png") repeat bottom left;
+  margin: 5px;
+  line-height: 20px;
+}
+
+.ramen-body-text {
+  padding: 0px 8px;
+}
+
+.ramen-body-memo {
+  color: #00A;
+  font-weight: bold;
+  padding: 0px 4px;
 }
