@@ -5,7 +5,7 @@ class RamenController < ApplicationController
   # GET /ramen
   # GET /ramen.json
   def index
-    @ramen = Ramen.all
+    @ramen = Ramen.all.includes([:ramen_tastes, :tastes, :ramen_shop, :shop])
   end
 
   def tastes

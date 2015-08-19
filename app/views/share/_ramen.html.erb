@@ -12,6 +12,12 @@
     <div class="rule ramen-body-text"><%= ramen.body %></div>
   </div>
 
+  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
+    <div><%= "コメント(#{ramen.comments.length})" %></div>
+  <% end %>
+  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
+    <div><%= "食べたい(#{ramen.likes.length})" %></div>
+  <% end %>
   <div class="profile">
     <%= link_to image_tag("NCM_0561.JPG", {size: "40x40", class: "profile-img"}), users_ramen_path(ramen.user.code) %>
     <div class="profile-name">
@@ -24,10 +30,4 @@
       <div><%= link_to "1時間前", ramen_path(ramen.id) %></div>
     </div>
   </div>
-  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
-    <div><%= "コメント(#{ramen.comments.length})" %></div>
-  <% end %>
-  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
-    <div><%= "食べたい(#{ramen.likes.length})" %></div>
-  <% end %>
 </div>
