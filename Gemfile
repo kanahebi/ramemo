@@ -41,8 +41,8 @@ gem 'omniauth-twitter'
 
 gem 'therubyracer'
 gem 'carrierwave'
-#gem 'carrierwave-dropbox'
-#gem 'mini_magick'
+gem 'carrierwave-dropbox'
+gem 'mini_magick'
 
 gem 'figaro'
 
