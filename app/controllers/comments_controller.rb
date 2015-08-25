@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
     logger.info @comment.inspect
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to ramen_comments_url(@ramen.id), notice: 'Comment was successfully created.' }
+        format.html { redirect_to ramen_url(@ramen.id), notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
       else
         format.html { render :new }

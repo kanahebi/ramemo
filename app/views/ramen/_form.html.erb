@@ -12,50 +12,55 @@
   <% end %>
 
   <div class="content">
-        <div class="field">
-          <%= "ラーメンの名前" %>
-          <%= f.text_field :name %>
-        </div>
+    <div class="field">
+      <%= "ラーメンの名前" %>
+      <%= f.text_field :name %>
+    </div>
 
-      <%= f.fields_for :ramen_shop do |s| %>
-        <div class="field">
-          <%= "お店の名前" %>
-          <%= link_to modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
-            <div class="select-link">
-              <%= "選ぶ" %>
-            </div>
-          <% end %>
-          <span id="select_shop"></span>
-          <%= s.hidden_field :shop_id %>
-        </div>
-      <% end %>
+    <%= f.fields_for :ramen_shop do |s| %>
+      <div class="field">
+        <%= "お店の名前" %>
+        <%= link_to modal_shops_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
+          <div class="select-link">
+            <%= "選ぶ" %>
+          </div>
+        <% end %>
+        <span id="select_shop"></span>
+        <%= s.hidden_field :shop_id %>
+      </div>
+    <% end %>
 
-        <div class="field">
-          <%= "ラーメンの写真" %>
-          <%= image_tag @ramen.picture if @ramen.picture? %>
-            <div class="select-link">
-              <%= "選ぶ" %>
-              <%= f.file_field :picture, {class: "file-input"} %>
-              <%= f.hidden_field :picture if @ramen.picture_cache %>
-            </div>
-            <div class="ramen-img">
-              <%= image_tag "ramen.png" %>
-            </div>
-            <div class="file-name"></div>
+    <div class="field">
+      <%= "ラーメンの写真" %>
+      <%= image_tag @ramen.picture if @ramen.picture? %>
+        <div class="select-link">
+          <%= "選ぶ" %>
+          <%= f.file_field :picture, {class: "file-input"} %>
+          <%= f.hidden_field :picture if @ramen.picture_cache %>
         </div>
+        <div class="ramen-img">
+          <%= image_tag "ramen.png" %>
+        </div>
+        <div class="file-name"></div>
+    </div>
 
-      <%= f.fields_for :ramen_tastes do |t| %>
-        <div class="field">
-          <%= "スープの味" %>
-          <%= link_to modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
-            <div class="select-link">
-              <%= "選ぶ" %>
-            </div>
-          <% end %>
-          <span id="select_tastes"></span>
-          <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
-        </div>
-      <% end %>
+    <%= f.fields_for :ramen_tastes do |t| %>
+      <div class="field">
+        <%= "スープの味" %>
+        <%= link_to modal_tastes_path, {remote: :ture, class: ["modal-open", "button-link"]} do %>
+          <div class="select-link">
+            <%= "選ぶ" %>
+          </div>
+        <% end %>
+        <span id="select_tastes"></span>
+        <div id="tastes-fields"><%= t.hidden_field :taste_id %></div>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= "メモ" %>
+      <%= f.text_area :body %>
+    </div>
   </div>
 
   <div class="actions">

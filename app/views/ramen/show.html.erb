@@ -1,14 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @ramen.name %>
-</p>
+<div class="comments-main">
+  <div class="ramen"><%= render partial: 'share/ramen', locals: {ramen: @ramen} %></div>
 
-<p>
-  <strong>Picture:</strong>
-  <%= image_tag @ramen.picture, size: "40x40" %>
-</p>
+  <% @comments.each do |comment| %>
+    <div class="comments">
+      <div class="comments-border">
+        <div class="comments-profile">
+          <%= image_tag "NCM_0561.JPG", {size: "30x30", class: "profile-img"} %>
+          <div class="comments-profile-name">
+            <div>
+              <%= link_to comment.user.name || comment.user.code, users_ramen_path(comment.user.code), {class: "user-name"} %>
+              <%= "@#{comment.user.code}" %>
+            </div>
+            <div><%= "1時間前" %></div>
+          </div>
+        </div>
+        <div class="comments-body"><%= comment.body %></div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<%= link_to 'Edit', edit_ramen_path(@ramen) %> |
-<%= link_to 'Back', ramen_index_path %>
+<br>
+<%= render partial: 'comments/form', locals: {comment: @comment} %>
+<%#= link_to 'New Comment', new_ramen_comment_path(@ramen.id) %>

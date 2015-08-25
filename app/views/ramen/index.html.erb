@@ -12,3 +12,24 @@
   <% end %>
 <% end %>
 </div>
+<script type="text/javascript">
+/*
+  $(document).ready(function(){
+    var ids = new Array();
+    <% @ramen.each do |ramen| %>
+      ids.push(<%= ramen.id %>);
+    <% end %>
+    $.each(ids, function(i, id) {
+      $.ajax({
+        url: "ramen/"+id+"/get_image",
+        type: 'get',
+        success: function(res) {
+        },
+        error: function(res, status) {
+          alert("error!");
+        }
+      });
+    });
+  });
+*/
+</script>

@@ -26,9 +26,16 @@ class RamenController < ApplicationController
     render :index
   end
 
+  def get_image
+    @ramen = Ramen.find_by(id: params[:id])
+  end
+
   # GET /ramen/1
   # GET /ramen/1.json
   def show
+    @ramen = Ramen.find_by(id: params[:id])
+    @comments = @ramen.comments
+    @comment = Comment.new
   end
 
   # GET /ramen/new
@@ -94,6 +101,6 @@ class RamenController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ramen_params
-      params.require(:ramen).permit(:name, :picture, :picture_cache, ramen_shop_attributes: [:id, :shop_id], ramen_tastes_attributes: [:id, :taste_id])
+      params.require(:ramen).permit(:name, :picture, :body, :picture_cache, ramen_shop_attributes: [:id, :shop_id], ramen_tastes_attributes: [:id, :taste_id])
     end
 end

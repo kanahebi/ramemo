@@ -30,6 +30,9 @@ Rails.application.routes.draw do
       get ':shop_id/shops' => 'ramen#shops', as: :shops
       get ':chain_shop_id/chain_shops' => 'ramen#chain_shops', as: :chain_shops
     end
+    member do
+      get 'get_image'
+    end
   end
 
 #  get ':user_code' => 'ramen#users', as: :users

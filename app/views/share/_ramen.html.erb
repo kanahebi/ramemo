@@ -1,7 +1,7 @@
 <div class="content">
   <div class="rule-30"><h2 class="ramen-name"><%= ramen.name %></h2></div>
   <div class="rule"><div class="ramen-shop"><%= shop_tag ramen %></div></div>
-  <div class="ramen-img"><%= image_tag ramen.picture %></div>
+  <div class="ramen-img" id="ramen-img_<%= ramen.id %>"><%= image_tag ramen.picture %></div>
   <div class="rule">
     <% ramen.tastes.each do |taste| %>
       <div class="ramen-taste"><%= link_to taste.name, tastes_ramen_index_path(taste.id), {class: ["ramen-taste-border", "marker"]} %></div>
@@ -12,12 +12,14 @@
     <div class="rule ramen-body-text"><%= ramen.body %></div>
   </div>
 
-  <%= link_to ramen_comments_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
+  <div class="rule-30">
+  <%= link_to ramen_path(ramen), {class: ["line-none", "ramen-comments"]} do %>
     <div><%= "コメント(#{ramen.comments.length})" %></div>
   <% end %>
-  <%= link_to ramen_likes_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
+  <%= link_to ramen_path(ramen), {class: ["line-none", "ramen-likes"]} do %>
     <div><%= "食べたい(#{ramen.likes.length})" %></div>
   <% end %>
+  </div>
   <div class="profile">
     <%= link_to image_tag("NCM_0561.JPG", {size: "40x40", class: "profile-img"}), users_ramen_path(ramen.user.code) %>
     <div class="profile-name">
@@ -30,4 +32,5 @@
       <div><%= link_to "1時間前", ramen_path(ramen.id) %></div>
     </div>
   </div>
+  <div class="rule"></div>
 </div>
