@@ -41,6 +41,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def email_required?
+    (!provider || !email.blank?) && super
+  end
+
   def password_required?
     super && provider.blank?
   end
